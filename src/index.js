@@ -30,18 +30,28 @@ const todoList = (function (doc) {
             this.name = newName;
         }
         changePriority() {
-
+            this.priority = !this.priority;
         }
-        changeDueDate() {
-
+        changeDueDate(date) {
+            this.dueDate = date;
         }
-        writeNote() {
-
+        writeNote(text) {
+            this.note = text;
         }
         changeCompletion() {
-
+            this.completion = !this.completion;
         }
     }
+
+    const todayList = {
+
+    };
+    const importantList = {
+
+    };
+    const plannedList = {
+
+    };
 
     const projectList = [];
 })(document);
