@@ -46,16 +46,16 @@ const todoList = (function (doc) {
     }
 
     class Main {
-        constructor(name, prop) {
+        constructor(name, externalFn) {
             this.name = name;
-            this.prop = prop;
+            this.externalFn = externalFn;
             this.taskList = [];
-            this.propFunction = new Function('task', `return ${this.prop};`);
         }
         updateList() {
+            this.taskList.length = 0;
             projectList.forEach(project => {
                 project.taskList.forEach(task => {
-                    if(this.propFunction(task)) {
+                    if(this.externalFn(task)) {
                         this.taskList.push(task);
                     }
                 });
@@ -63,9 +63,9 @@ const todoList = (function (doc) {
         }
     }
 
-    const todayList = new Main('My Day', 'isToday(task.dueDate)');
-    const importantList = new Main('Important', 'task.priority');
-    const plannedList = new Main('Planned', 'task.dueDate');
+    const todayList = new Main('My Day', task => isToday(task.dueDate));
+    const importantList = new Main('Important', task => task.priority);
+    const plannedList = new Main('Planned', task => task.dueDate);
 
     todayList.assignDate = function() {
         this.date = format(new Date(), "iiii, MMMM d");
@@ -81,3 +81,5 @@ const todoList = (function (doc) {
         mainList
     }
 })(document);
+
+window.todoList = todoList;
