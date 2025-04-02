@@ -1,3 +1,5 @@
+import { format, isToday } from "date-fns";
+
 const todoList = (function (doc) {
     class Project {
         constructor(name) {
@@ -43,15 +45,39 @@ const todoList = (function (doc) {
         }
     }
 
-    const todayList = {
+    class Main {
+        constructor(name, prop) {
+            this.name = name;
+            this.prop = prop;
+            this.taskList = [];
+            this.propFunction = new Function('task', `return ${this.prop};`);
+        }
+        updateList() {
+            projectList.forEach(project => {
+                project.taskList.forEach(task => {
+                    if(this.propFunction(task)) {
+                        this.taskList.push(task);
+                    }
+                });
+            });
+        }
+    }
 
-    };
-    const importantList = {
+    const todayList = new Main('My Day', 'isToday(task.dueDate)');
+    const importantList = new Main('Important', 'task.priority');
+    const plannedList = new Main('Planned', 'task.dueDate');
 
-    };
-    const plannedList = {
-
+    todayList.assignDate = function() {
+        this.date = format(new Date(), "iiii, MMMM d");
     };
 
     const projectList = [];
+    const mainList = [todayList, importantList, plannedList];
+
+    return {
+        Project,
+        Task,
+        projectList,
+        mainList
+    }
 })(document);
