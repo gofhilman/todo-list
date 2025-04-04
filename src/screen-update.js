@@ -7,8 +7,11 @@ const main = document.querySelector('.main');
 const rightSidebar = document.querySelector('.right-sidebar');
 
 function updateMainList(target) {
-    const projectName = document.createElement('div');
-    const projectText = document.createElement('p');
+    const projectContainer = document.createElement('div');
+    const projectSection = document.createElement('div');
+    const projectName = document.createElement('p');
+    const projectRenaming = document.createElement('img');
+    const projectDeletion = document.createElement('img');
     const todayDate = document.createElement('p');
     const taskCreation = document.createElement('div');
     const plusSymbol = document.createElement('div');
@@ -20,11 +23,13 @@ function updateMainList(target) {
     const completedListText = document.createElement('p');
     const completedList = document.createElement('div');
 
-    projectName.classList.add("project-name");
+    projectSection.classList.add("project-section");
     taskCreation.classList.add("icon-and-text");
     completedListName.classList.add("icon-and-text");
 
-    projectText.setAttribute("id", "project-text");
+    projectName.setAttribute("id", "project-name");
+    projectRenaming.setAttribute("id", "project-renaming");
+    projectDeletion.setAttribute("id", "project-deletion");
     todayDate.setAttribute("id", "today-date");
     taskCreation.setAttribute("id", "task-creation");
     taskListMain.setAttribute("id", "task-list");

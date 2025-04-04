@@ -8,6 +8,9 @@ class Project {
     addProject() {
         projectList.push(this);
     }
+    deleteProject() {
+        projectList.splice(projectList.indexOf(this), 1);
+    }
     renameProject(newName) {
         this.name = newName;
     }
