@@ -6,5 +6,5 @@ This project is part of The Odin Project.
 
 ## To Do
 
-- Edit the creation elements
+- Style main section
 - Complete screen list update functions

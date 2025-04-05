@@ -1,5 +1,6 @@
 import { Project, Task, projectList, mainList } from "./main-logic";
 import updateProjectList from "./project-list-update.js";
+import updateMain from "./main-update.js";
 import "../node_modules/modern-normalize/modern-normalize.css";
 import "./styles.css";
 
@@ -11,6 +12,8 @@ const rightSidebar = document.querySelector('.right-sidebar');
 
 (new Project("General")).addProject();
 updateProjectList();
+updateMain(projectList[0]);
+console.log(projectList);
 
 // mainListSidebar.addEventListener('click', mainHandler);
 // projectListSidebar.addEventListener('click', projectHandler)

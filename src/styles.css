@@ -72,12 +72,12 @@ body {
     gap: 10px;
 }
 
-#project-creation {
+.creation-section {
     display: flex;
     align-items: baseline;
 }
 
-#project-creation > div {
+.creation-section > label {
     font-size: 2.2rem;
 }
 
