@@ -6,5 +6,5 @@ This project is part of The Odin Project.
 
 ## To Do
 
-- Initialize page
-- Do screen control for Project (screen-update then handler)
+- Edit the creation elements
+- Complete screen list update functions

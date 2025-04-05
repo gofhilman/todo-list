@@ -3,6 +3,7 @@ import { format, isToday } from "date-fns";
 class Project {
     constructor(name) {
         this.name = name;
+        this.id = name.toLowerCase().replace(/ /g, "-");
         this.taskList = [];
     }
     addProject() {
@@ -13,6 +14,7 @@ class Project {
     }
     renameProject(newName) {
         this.name = newName;
+        this.id = newName.toLowerCase().replace(/ /g, "-");
     }
     addTask(task) {
         this.taskList.push(task);
@@ -25,6 +27,7 @@ class Project {
 class Task {
     constructor(name) {
         this.name = name;
+        this.id = name.toLowerCase().replace(/ /g, "-");
         this.priority = false;
         this.dueDate = null;
         this.note = '';
@@ -32,6 +35,7 @@ class Task {
     }
     renameTask(newName) {
         this.name = newName;
+        this.id = newName.toLowerCase().replace(/ /g, "-");
     }
     changePriority() {
         this.priority = !this.priority;
