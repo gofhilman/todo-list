@@ -43,7 +43,7 @@ body {
 
 
 
-.icon {
+.icon, .circle-mark, .star-mark {
     filter: invert(100%) brightness(1000%);
     width: 30px;
 }
@@ -96,6 +96,11 @@ body {
 .project-section > img {
     filter: invert(100%) brightness(1000%);
     width: 40px;
+}
+
+#task-list > div, #completed-list > div {
+    display: flex;
+    justify-content: space-between;
 }
 
 .right-sidebar {

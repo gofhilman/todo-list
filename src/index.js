@@ -11,9 +11,11 @@ const main = document.querySelector('.main');
 const rightSidebar = document.querySelector('.right-sidebar');
 
 (new Project("General")).addProject();
+projectList[0].addTask(new Task("Fuck Lior"));
+projectList[0].addTask(new Task("Get fucked by Lior"));
+projectList[0].taskList[1].changeCompletion();
 updateProjectList();
 updateMain(projectList[0]);
-console.log(projectList);
 
 // mainListSidebar.addEventListener('click', mainHandler);
 // projectListSidebar.addEventListener('click', projectHandler)

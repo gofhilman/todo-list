@@ -1,4 +1,5 @@
 import { Project, Task, projectList, mainList } from "./main-logic";
+import updateTaskList from "./task-list-update";
 
 import calendarMonth from "./icons/calendar-check.svg";
 import chevronRight from "./icons/chevron-right.svg";
@@ -69,12 +70,14 @@ function updateMain(target) {
     projectName.textContent = target.name;
     if (target.date) todayDate.textContent = target.date;
     plusSymbol.textContent = "+";
-    completedListText.textContent = `Completed EDITNUMBER`;
+    completedListText.textContent = `Completed ${target.taskList.filter(task => task.completion).length}`;
 
     projectSection.append(projectName, projectRenaming, projectDeletion);
     projectContainer.append(projectSection, todayDate);
     taskCreationSection.append(plusSymbol, taskCreation);
+    updateTaskList(taskListMain, target);
     completedListTitle.append(chevronSymbol, completedListText);
+    updateTaskList(completedList, target, 'complete');
     completedListSection.append(completedListTitle, completedList);
     main.append(projectContainer, taskCreationSection, taskListMain, completedListSection);
 }
