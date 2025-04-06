@@ -3,7 +3,7 @@ import circle from "./icons/circle.svg";
 import starOutline from "./icons/star-outline.svg";
 import star from "./icons/star.svg";
 
-function updateTaskList(target, state = 'incomplete') {
+function updateTaskList(parent, target, state = 'incomplete') {
     let taskState, circleState;
     if (state == 'incomplete') {
         taskState = task => !task.completion;
@@ -20,7 +20,7 @@ function updateTaskList(target, state = 'incomplete') {
             const taskName = document.createElement('p');
             const starMark = document.createElement('img');
 
-            taskSection.setAttribute("id", task.id);
+            taskName.setAttribute("id", task.id);
             taskName.textContent = task.name;
 
             Object.assign(circleMark, {
@@ -33,6 +33,8 @@ function updateTaskList(target, state = 'incomplete') {
                 alt: "Star mark",
                 className: "star-mark"
             });
+            taskSection.append(circleMark, taskName, starMark);
+            parent.appendChild(taskSection);
         } 
     });
 }
