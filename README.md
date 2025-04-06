@@ -6,5 +6,4 @@ This project is part of The Odin Project.
 
 ## To Do
 
-- Style main section
-- Complete screen list update functions
+- Complete task list update function

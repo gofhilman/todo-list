@@ -16,6 +16,8 @@ const main = document.querySelector('.main');
 const rightSidebar = document.querySelector('.right-sidebar');
 
 function updateMain(target) {
+    main.replaceChildren();
+
     const projectContainer = document.createElement('div');
     const projectSection = document.createElement('div');
     const projectName = document.createElement('p');
@@ -61,7 +63,7 @@ function updateMain(target) {
     Object.assign(chevronSymbol, {
         src: chevronRight,
         alt: "Dropdown icon",
-        class: "icon"
+        className: "icon"
     });
 
     projectName.textContent = target.name;
