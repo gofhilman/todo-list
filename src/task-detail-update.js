@@ -19,13 +19,21 @@ function updateTaskDetails(target) {
     const dueDateText = document.createElement('p');
     const dueDateInput = document.createElement('input');
     const noteText = document.createElement('textarea');
+    const taskButtons = document.createElement('div');
+    const taskDeletion = document.createElement('button');
+    const detailConfirmation = document.createElement('button');
 
     dueDateTitle.classList.add("icon-and-text");
 
     taskSection.setAttribute("id", "task");
     dueDateSection.setAttribute("for", "due-date");
+    taskButtons.setAttribute("id", "task-buttons");
+    taskDeletion.setAttribute("id", "task-deletion")
+    detailConfirmation.setAttribute("id", "detail-confirmation");
 
     dueDateText.textContent = "Add due date";
+    taskDeletion.textContent = "Delete task";
+    detailConfirmation.textContent = "Confirm";
 
     Object.assign(circleMark, {
         src: circleOutline,
@@ -63,7 +71,8 @@ function updateTaskDetails(target) {
     taskSection.append(circleMark, taskName, starMark);
     dueDateTitle.append(dueDateIcon, dueDateText);
     dueDateSection.append(dueDateTitle, dueDateInput);
-    rightSidebar.append(taskSection, dueDateSection, noteText);
+    taskButtons.append(taskDeletion, detailConfirmation);
+    rightSidebar.append(taskSection, dueDateSection, noteText, taskButtons);
 }
 
 export default updateTaskDetails;

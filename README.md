@@ -6,4 +6,4 @@ This project is part of The Odin Project.
 
 ## To Do
 
-- Complete main update function
+- Add task list handle function
