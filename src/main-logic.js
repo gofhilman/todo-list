@@ -54,6 +54,7 @@ class Task {
 class Main {
     constructor(name, externalFn) {
         this.name = name;
+        this.id = name.toLowerCase().replace(/ /g, "-");
         this.externalFn = externalFn;
         this.taskList = [];
     }

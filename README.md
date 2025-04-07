@@ -6,4 +6,11 @@ This project is part of The Odin Project.
 
 ## To Do
 
-- Add task list handle function
+- Add project creation handler function
+- Add task creation handler function
+- Add project renaming handler function
+- Add project deletion handler function
+- Add circle mark handler function
+- Add star mark handler function
+- Add completed list section handler function
+- Add event listeners
