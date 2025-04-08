@@ -2,6 +2,10 @@ import { Project, Task, projectList, mainList } from "./main-logic";
 import updateMain from "./main-update";
 import updateProjectList from "./project-list-update";
 import updateTaskDetails from "./task-detail-update";
+import updateTaskList from "./task-list-update";
+
+import chevronRight from "./icons/chevron-right.svg";
+import chevronDown from "./icons/chevron-down.svg";
 
 const rightSidebar = document.querySelector('.right-sidebar');
 const main = document.querySelector('.main');
@@ -71,7 +75,7 @@ function handleProjectDeletion(projectObj) {
 }
 
 function handleListMark(event, projectObj) {
-    if(event.target.className === "circle-mark" || event.target.className === "star-mark") {
+    if((event.target.className === "circle-mark") || (event.target.className === "star-mark")) {
         let targetId, markFn;
         if(event.target.className === "circle-mark") {
             targetId = event.target.nextElementSibling.id;
@@ -87,6 +91,20 @@ function handleListMark(event, projectObj) {
     }    
 }
 
+function handleCompletedList(event, projectObj) {
+    if((event.target.id === "completed-list-icon") || (event.target.id === "completed-list-text")) {
+        const completedListIcon = document.querySelector('img#completed-list-icon');
+        let completedListNode = event.target.parentElement.nextElementSibling;
+        if(completedListNode.children.length === 0) {
+            completedListIcon.src = chevronDown;
+            updateTaskList(completedListNode, projectObj, 'complete');
+        } else {
+            completedListIcon.src = chevronRight;
+            completedListNode.replaceChildren();
+        }
+    }
+}
+
 export { 
     handleTaskDetails,
     handleTaskList,
@@ -96,5 +114,6 @@ export {
     handleTaskCreation,
     handleProjectRenaming,
     handleProjectDeletion,
-    handleListMark
+    handleListMark,
+    handleCompletedList
 }

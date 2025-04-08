@@ -35,11 +35,13 @@ function updateMain(target) {
 
     projectSection.classList.add("project-section");
     taskCreationSection.classList.add("task-creation-section", "icon-and-text");
-    completedListTitle.classList.add("completed-list-title", "icon-and-text");
+    completedListTitle.classList.add("icon-and-text");
 
     todayDate.setAttribute("id", "today-date");
     plusSymbol.setAttribute("for", "task-creation");
     taskListMain.setAttribute("id", "task-list");
+    completedListTitle.setAttribute("id", "completed-list-title");
+    completedListText.setAttribute("id", "completed-list-text");
     completedList.setAttribute("id", "completed-list");
 
     Object.assign(projectName, {
@@ -62,6 +64,7 @@ function updateMain(target) {
     Object.assign(chevronSymbol, {
         src: chevronRight,
         alt: "Dropdown icon",
+        id: "completed-list-icon",
         className: "icon"
     });
 
@@ -74,7 +77,6 @@ function updateMain(target) {
     taskCreationSection.append(plusSymbol, taskCreation);
     updateTaskList(taskListMain, target);
     completedListTitle.append(chevronSymbol, completedListText);
-    updateTaskList(completedList, target, 'complete');
     completedListSection.append(completedListTitle, completedList);
     main.append(projectContainer, taskCreationSection, taskListMain, completedListSection);
 }
