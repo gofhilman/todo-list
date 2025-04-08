@@ -29,7 +29,12 @@ function updateTaskList(parent, target, state = 'incomplete') {
                 className: "circle-mark"
             });
             Object.assign(starMark, {
-                src: starOutline,
+                src: (task => {
+                    if(!task.priority) {
+                        return starOutline;
+                    }
+                    return star;
+                })(task),
                 alt: "Star mark",
                 className: "star-mark"
             });

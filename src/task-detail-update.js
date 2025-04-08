@@ -36,12 +36,22 @@ function updateTaskDetails(target) {
     detailConfirmation.textContent = "Confirm";
 
     Object.assign(circleMark, {
-        src: circleOutline,
+        src: (target => {
+            if(!target.completion) {
+                return circleOutline;
+            }
+            return circle;
+        })(target),
         alt: "Circle mark",
         className: "circle-mark"
     });
     Object.assign(starMark, {
-        src: starOutline,
+        src: (target => {
+            if(!target.priority) {
+                return starOutline;
+            }
+            return star;
+        })(target),
         alt: "Star mark",
         className: "star-mark"
     });

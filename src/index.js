@@ -1,5 +1,5 @@
 import { Project, Task, projectList, mainList } from "./main-logic";
-import { handleTaskDetails, handleTaskList, handleProjectList, handleMainList } from "./handlers.js";
+import { handleTaskDetails, handleTaskList, handleProjectList, handleMainList, handleProjectCreation } from "./handlers.js";
 import updateProjectList from "./project-list-update.js";
 import updateMain from "./main-update.js";
 import "../node_modules/modern-normalize/modern-normalize.css";
@@ -15,9 +15,11 @@ const rightSidebar = document.querySelector('.right-sidebar');
 projectList[0].addTask(new Task("Fuck Lior"));
 projectList[0].addTask(new Task("Get fucked by Lior"));
 projectList[0].taskList[0].changeDueDate(new Date());
+projectList[0].taskList[0].changePriority();
 projectList[0].taskList[1].changeCompletion();
 updateProjectList();
 updateMain(projectList[0]);
 
 mainListSidebar.addEventListener('click', event => handleMainList(event));
 projectListSidebar.addEventListener('click', event => handleProjectList(event));
+projectCreation.addEventListener('keydown', event => handleProjectCreation(event));
