@@ -4,11 +4,11 @@ import updateProjectList from "./project-list-update";
 import updateTaskDetails from "./task-detail-update";
 import updateTaskList from "./task-list-update";
 
-import chevronRight from "./icons/chevron-right.svg";
 import chevronDown from "./icons/chevron-down.svg";
 
 const rightSidebar = document.querySelector('.right-sidebar');
 const main = document.querySelector('.main');
+let listState;
 
 function handleTaskDetails(event, projectObj, taskObj, taskName, dueDateInput, noteText) {
     switch (event.target.id) {
@@ -16,18 +16,24 @@ function handleTaskDetails(event, projectObj, taskObj, taskName, dueDateInput, n
             taskObj.renameTask(taskName.value);
             taskObj.changeDueDate(dueDateInput.value);
             taskObj.writeNote(noteText.value);
-            updateMain(projectObj);     
+            listState = completedListState();
+            updateMain(projectObj);
+            if(listState) updateCompletedList(projectObj);   
             break;
         case 'task-deletion':
             projectObj.deleteTask(taskObj);
             rightSidebar.replaceChildren();
+            listState = completedListState();
             updateMain(projectObj);
+            if(listState) updateCompletedList(projectObj);  
     }
 }
 
 function handleTaskList(event, projectObj) {
-    let taskObj = projectObj.taskList.find(task => task.id === event.target.id);
-    updateTaskDetails(taskObj);
+    if(event.target.tagName === 'P') {
+        let taskObj = projectObj.taskList.find(task => task.id === event.target.id);
+        updateTaskDetails(projectObj, taskObj);
+    }
 }
 
 function handleProjectList(event) {
@@ -55,7 +61,9 @@ function handleTaskCreation(event, projectObj) {
     if(event.key === 'Enter') {
         let newTaskObj = new Task(event.target.value);
         projectObj.addTask(newTaskObj);
+        listState = completedListState();
         updateMain(projectObj);
+        if(listState) updateCompletedList(projectObj); 
         event.target.value = '';
     }
 }
@@ -64,7 +72,9 @@ function handleProjectRenaming(event, projectObj) {
     if(event.key === 'Enter') {
         projectObj.renameProject(event.target.value);
         updateProjectList();
+        listState = completedListState();
         updateMain(projectObj);
+        if(listState) updateCompletedList(projectObj); 
     }
 }
 
@@ -86,23 +96,47 @@ function handleListMark(event, projectObj) {
         }
         let taskObj = projectObj.taskList.find(task => task.id === targetId);
         markFn(taskObj);
+        listState = completedListState();
         updateMain(projectObj);
-        if (rightSidebar.children.length > 0) updateTaskDetails(taskObj);
+        if(listState) updateCompletedList(projectObj); 
+        if (rightSidebar.children.length > 0) updateTaskDetails(projectObj, taskObj);
     }    
+}
+
+function handleTaskMark(event, projectObj, taskObj) {
+    if((event.target.className === "circle-mark") || (event.target.className === "star-mark")) {
+        if(event.target.className === "circle-mark") {
+            taskObj.changeCompletion();
+        } else {
+            taskObj.changePriority();
+        }
+        listState = completedListState();
+        updateMain(projectObj);
+        if(listState) updateCompletedList(projectObj);
+        updateTaskDetails(projectObj, taskObj);
+    }
 }
 
 function handleCompletedList(event, projectObj) {
     if((event.target.id === "completed-list-icon") || (event.target.id === "completed-list-text")) {
-        const completedListIcon = document.querySelector('img#completed-list-icon');
-        let completedListNode = event.target.parentElement.nextElementSibling;
-        if(completedListNode.children.length === 0) {
-            completedListIcon.src = chevronDown;
-            updateTaskList(completedListNode, projectObj, 'complete');
+        if(!completedListState()) {
+            updateCompletedList(projectObj);
         } else {
-            completedListIcon.src = chevronRight;
-            completedListNode.replaceChildren();
+            updateMain(projectObj);
         }
     }
+}
+
+function completedListState() {
+    const completedList = document.querySelector('#completed-list');
+    return !!completedList.children.length;
+}
+
+function updateCompletedList(projectObj) {
+    const completedListIcon = document.querySelector('img#completed-list-icon');
+    const completedList = document.querySelector('#completed-list');
+    completedListIcon.src = chevronDown;
+    updateTaskList(completedList, projectObj, 'complete');
 }
 
 export { 
@@ -115,5 +149,6 @@ export {
     handleProjectRenaming,
     handleProjectDeletion,
     handleListMark,
+    handleTaskMark,
     handleCompletedList
 }

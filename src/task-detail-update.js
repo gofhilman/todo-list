@@ -1,3 +1,4 @@
+import { handleTaskDetails, handleTaskMark } from "./handlers";
 import calendarMonth from "./icons/calendar-check.svg";
 import circleOutline from "./icons/circle-outline.svg";
 import circle from "./icons/circle.svg";
@@ -6,7 +7,7 @@ import star from "./icons/star.svg";
 
 const rightSidebar = document.querySelector('.right-sidebar');
 
-function updateTaskDetails(target) {
+function updateTaskDetails(projectTarget, target) {
     rightSidebar.replaceChildren();
 
     const taskSection = document.createElement('div');
@@ -77,6 +78,9 @@ function updateTaskDetails(target) {
         placeholder: "Add note",
         value: target.note
     });
+
+    taskSection.addEventListener('click', event => handleTaskMark(event, projectTarget, target));
+    taskButtons.addEventListener('click', event => handleTaskDetails(event, projectTarget, target, taskName, dueDateInput, noteText));
 
     taskSection.append(circleMark, taskName, starMark);
     dueDateTitle.append(dueDateIcon, dueDateText);

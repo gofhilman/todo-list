@@ -6,5 +6,5 @@ This project is part of The Odin Project.
 
 ## To Do
 
-- Add completed list section handler function
-- Add event listeners
+- Handler function from task detail marks
+- Fix completed list dropdown

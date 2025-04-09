@@ -8,6 +8,7 @@ import circle from "./icons/circle.svg";
 import starOutline from "./icons/star-outline.svg";
 import star from "./icons/star.svg";
 import trashCanOutline from "./icons/trash-can-outline.svg";
+import { handleCompletedList, handleListMark, handleProjectDeletion, handleProjectRenaming, handleTaskCreation, handleTaskList } from "./handlers";
 
 const mainListSidebar = document.querySelector('#main-list');
 const projectListSidebar = document.querySelector('#project-list');
@@ -71,6 +72,15 @@ function updateMain(target) {
     if (target.date) todayDate.textContent = target.date;
     plusSymbol.textContent = "+";
     completedListText.textContent = `Completed ${target.taskList.filter(task => task.completion).length}`;
+
+    [taskListMain, completedList].forEach(node => {
+        node.addEventListener('click', event => handleTaskList(event, target));
+        node.addEventListener('click', event => handleListMark(event, target));
+    });
+    taskCreation.addEventListener('keydown', event => handleTaskCreation(event, target));
+    projectName.addEventListener('keydown', event => handleProjectRenaming(event, target));
+    projectDeletion.addEventListener('click', () => handleProjectDeletion(target));
+    completedListTitle.addEventListener('click', event => handleCompletedList(event, target));
 
     projectSection.append(projectName, projectDeletion);
     projectContainer.append(projectSection, todayDate);
