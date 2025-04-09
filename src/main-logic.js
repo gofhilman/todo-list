@@ -75,7 +75,7 @@ const importantList = new Main('Important', task => task.priority);
 const plannedList = new Main('Planned', task => task.dueDate);
 
 todayList.assignDate = function() {
-    this.date = format(new Date(), "iiii, MMMM d");
+    return format(new Date(), "iiii, MMMM d");
 };
 
 const projectList = [];

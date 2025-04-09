@@ -6,5 +6,5 @@ This project is part of The Odin Project.
 
 ## To Do
 
-- Handler function from task detail marks
-- Fix completed list dropdown
+- Add localStorage functionality
+- Do advanced styling

@@ -41,21 +41,22 @@ body {
     align-items: center;
 }
 
-
-
 .icon, .circle-mark, .star-mark {
     filter: invert(100%) brightness(1000%);
     width: 30px;
 }
 
-.left-sidebar {
-    padding: 15px 20px;
-    flex: 2;
+.left-sidebar, .main, .right-sidebar {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    background-color: var(--bg-light-color);
     font-size: 1.2rem;
+}
+
+.left-sidebar {  
+    padding: 15px 20px; 
+    flex: 2;    
+    background-color: var(--bg-light-color);
+    gap: 20px;
 }
 
 .page-title > .logo {
@@ -64,12 +65,22 @@ body {
 
 .title-text {
     font-size: 2rem;
+    font-weight: 500;
 }
 
-#main-list {
+#main-list, #project-list {
     display: flex;
     flex-direction: column;
     gap: 10px;
+}
+
+#main-list > div {
+    gap: 0;
+}
+
+#main-list > div > p {
+    padding-left: 15px;
+    flex: 1;
 }
 
 .creation-section {
@@ -79,31 +90,76 @@ body {
 
 .creation-section > label {
     font-size: 2.2rem;
+    line-height: 1;
+}
+
+input[type="text"] {
+    background-color: inherit;
+    border: none;
+    color: white;
+    line-height: 1.5;
 }
 
 .main {
+    padding: 40px 60px;
     min-height: 100vh;
     flex: 6;
-    display: flex;
-    flex-direction: column;
+    gap: 15px;
 }
 
 .project-section {
-    display: flex;
-    
+    display: flex; 
+    justify-content: space-between;
+    font-size: 2rem;  
 }
 
 .project-section > img {
     filter: invert(100%) brightness(1000%);
-    width: 40px;
+    width: 35px;
 }
 
-#task-list > div, #completed-list > div {
+#task-list, #completed-list, .main > div:last-child {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#task-list > div, #completed-list > div, #task {
+    display: flex;
+}
+
+#task-list > div > p, #completed-list > div > p {
+    padding: 0 15px;
+    flex: 1;
+}
+
+#task {
+    gap: 15px;
+}
+
+.star-mark {
+    margin-left: auto;
 }
 
 .right-sidebar {
+    padding: 40px 50px;
+    gap: 30px;
     flex: 3;
     background-color: var(--bg-lighter-color);
+}
+
+label[for="due-date"] {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+textarea {
+    resize: none;
+}
+
+#task-buttons {
+    display: flex;
+    justify-content: space-between;
 }

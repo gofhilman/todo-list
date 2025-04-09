@@ -1,5 +1,5 @@
 import { handleTaskDetails, handleTaskMark } from "./handlers";
-import calendarMonth from "./icons/calendar-check.svg";
+import calendarMonth from "./icons/calendar-month.svg";
 import circleOutline from "./icons/circle-outline.svg";
 import circle from "./icons/circle.svg";
 import starOutline from "./icons/star-outline.svg";
@@ -76,7 +76,8 @@ function updateTaskDetails(projectTarget, target) {
         name: "note-text",
         id: "note-text",
         placeholder: "Add note",
-        value: target.note
+        value: target.note,
+        rows: 4
     });
 
     taskSection.addEventListener('click', event => handleTaskMark(event, projectTarget, target));

@@ -1,20 +1,9 @@
-import { Project, Task, projectList, mainList } from "./main-logic";
 import updateTaskList from "./task-list-update";
-
-import calendarMonth from "./icons/calendar-check.svg";
 import chevronRight from "./icons/chevron-right.svg";
-import circleOutline from "./icons/circle-outline.svg";
-import circle from "./icons/circle.svg";
-import starOutline from "./icons/star-outline.svg";
-import star from "./icons/star.svg";
 import trashCanOutline from "./icons/trash-can-outline.svg";
 import { handleCompletedList, handleListMark, handleProjectDeletion, handleProjectRenaming, handleTaskCreation, handleTaskList } from "./handlers";
 
-const mainListSidebar = document.querySelector('#main-list');
-const projectListSidebar = document.querySelector('#project-list');
-const projectCreation = document.querySelector('#project-creation');
 const main = document.querySelector('.main');
-const rightSidebar = document.querySelector('.right-sidebar');
 
 function updateMain(target) {
     main.replaceChildren();
@@ -35,7 +24,7 @@ function updateMain(target) {
     const completedList = document.createElement('div');
 
     projectSection.classList.add("project-section");
-    taskCreationSection.classList.add("task-creation-section", "icon-and-text");
+    taskCreationSection.classList.add("creation-section", "icon-and-text");
     completedListTitle.classList.add("icon-and-text");
 
     todayDate.setAttribute("id", "today-date");
@@ -69,7 +58,7 @@ function updateMain(target) {
         className: "icon"
     });
 
-    if (target.date) todayDate.textContent = target.date;
+    if (target.assignDate) todayDate.textContent = target.assignDate();
     plusSymbol.textContent = "+";
     completedListText.textContent = `Completed ${target.taskList.filter(task => task.completion).length}`;
 
@@ -82,7 +71,12 @@ function updateMain(target) {
     projectDeletion.addEventListener('click', () => handleProjectDeletion(target));
     completedListTitle.addEventListener('click', event => handleCompletedList(event, target));
 
-    projectSection.append(projectName, projectDeletion);
+    if(target.externalFn) {
+        projectName.readOnly = true;
+        projectSection.appendChild(projectName);
+    } else {
+        projectSection.append(projectName, projectDeletion);
+    } 
     projectContainer.append(projectSection, todayDate);
     taskCreationSection.append(plusSymbol, taskCreation);
     updateTaskList(taskListMain, target);

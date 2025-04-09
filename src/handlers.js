@@ -3,7 +3,6 @@ import updateMain from "./main-update";
 import updateProjectList from "./project-list-update";
 import updateTaskDetails from "./task-detail-update";
 import updateTaskList from "./task-list-update";
-
 import chevronDown from "./icons/chevron-down.svg";
 
 const rightSidebar = document.querySelector('.right-sidebar');
@@ -63,7 +62,8 @@ function handleTaskCreation(event, projectObj) {
         projectObj.addTask(newTaskObj);
         listState = completedListState();
         updateMain(projectObj);
-        if(listState) updateCompletedList(projectObj); 
+        if(listState) updateCompletedList(projectObj);
+        updateTaskDetails(projectObj, newTaskObj); 
         event.target.value = '';
     }
 }
@@ -128,8 +128,8 @@ function handleCompletedList(event, projectObj) {
 }
 
 function completedListState() {
-    const completedList = document.querySelector('#completed-list');
-    return !!completedList.children.length;
+    const completedListIcon = document.querySelector('#completed-list-icon');
+    return !!(completedListIcon.src === chevronDown);
 }
 
 function updateCompletedList(projectObj) {
