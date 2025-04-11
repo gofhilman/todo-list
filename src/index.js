@@ -9,12 +9,16 @@ const mainListSidebar = document.querySelector('#main-list');
 const projectListSidebar = document.querySelector('#project-list');
 const projectCreation = document.querySelector('#project-creation');
 
-(new Project("General")).addProject();
-projectList[0].addTask(new Task("Fuck Lior"));
-projectList[0].addTask(new Task("Get fucked by Lior"));
-projectList[0].taskList[0].changeDueDate(new Date());
-projectList[0].taskList[0].changePriority();
-projectList[0].taskList[1].changeCompletion();
+window.onbeforeunload = function() {
+    localStorage.setItem('projects', JSON.stringify(projectList));
+}
+const projects = JSON.parse(localStorage.getItem('projects'));
+
+if(projects) {
+    projects.forEach(project => projectList.push(project));
+} else {
+    (new Project("General")).addProject();
+}
 updateProjectList();
 updateMain(projectList[0]);
 
