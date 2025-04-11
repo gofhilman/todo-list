@@ -4,21 +4,13 @@ import updateProjectList from "./project-list-update.js";
 import updateMain from "./main-update.js";
 import "../node_modules/modern-normalize/modern-normalize.css";
 import "./styles.css";
+import init from "./init.js";
 
 const mainListSidebar = document.querySelector('#main-list');
 const projectListSidebar = document.querySelector('#project-list');
 const projectCreation = document.querySelector('#project-creation');
 
-window.onbeforeunload = function() {
-    localStorage.setItem('projects', JSON.stringify(projectList));
-}
-const projects = JSON.parse(localStorage.getItem('projects'));
-
-if(projects) {
-    projects.forEach(project => projectList.push(project));
-} else {
-    (new Project("General")).addProject();
-}
+init();
 updateProjectList();
 updateMain(projectList[0]);
 

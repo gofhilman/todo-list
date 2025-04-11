@@ -94,7 +94,7 @@ body {
 }
 
 input[type="text"] {
-    background-color: inherit;
+    background-color: transparent;
     border: none;
     color: white;
     line-height: 1.5;
