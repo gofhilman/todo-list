@@ -93,8 +93,8 @@ body {
     line-height: 1;
 }
 
-input[type="text"] {
-    background-color: transparent;
+input[type="text"], .creation-section > input {
+    background-color: inherit;
     border: none;
     color: white;
     line-height: 1.5;
