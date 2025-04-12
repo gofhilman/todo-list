@@ -12,7 +12,7 @@ const projectCreation = document.querySelector('#project-creation');
 
 init();
 updateProjectList();
-updateMain(projectList[0]);
+if(projectList.length > 0) updateMain(projectList[0]);
 
 mainListSidebar.addEventListener('click', event => handleMainList(event));
 projectListSidebar.addEventListener('click', event => handleProjectList(event));
