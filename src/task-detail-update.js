@@ -78,7 +78,7 @@ function updateTaskDetails(projectTarget, target) {
         id: "note-text",
         placeholder: "Add note",
         value: target.note,
-        rows: 4
+        rows: 5
     });
 
     taskSection.addEventListener('click', event => handleTaskMark(event, projectTarget, target));
