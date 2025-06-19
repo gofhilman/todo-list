@@ -32,7 +32,7 @@ function updateTaskDetails(projectTarget, target) {
     taskDeletion.setAttribute("id", "task-deletion")
     detailConfirmation.setAttribute("id", "detail-confirmation");
 
-    dueDateText.textContent = "Add due date";
+    dueDateText.textContent = "Due date";
     taskDeletion.textContent = "Delete task";
     detailConfirmation.textContent = "Confirm";
 
