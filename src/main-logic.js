@@ -79,6 +79,7 @@ class Main {
         }
       });
     });
+    this.taskList.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
   }
 }
 

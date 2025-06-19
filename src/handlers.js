@@ -44,6 +44,8 @@ function handleMainList(event) {
     mainList.forEach(main => main.updateList());
     let mainObj = mainList.find(main => main.id === event.target.parentElement.id);
     updateMain(mainObj);
+    const taskCreationSection = document.querySelector(".main>.creation-section");
+    taskCreationSection.classList.add("no-display");
 }
 
 function handleProjectCreation(event) {

@@ -85,7 +85,7 @@ body {
 }
 
 #main-list > div:hover, #project-list > p:hover {
-    background-color: black;
+    background-color: var(--base-color);
 }
 
 #main-list > div > p {
@@ -126,6 +126,10 @@ input[type="text"], .creation-section > input {
 .project-section > img {
     filter: invert(100%) brightness(1000%);
     width: 35px;
+}
+
+.creation-section.no-display {
+    display: none;
 }
 
 #task-list, #completed-list, .main > div:last-child {

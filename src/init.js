@@ -1,4 +1,4 @@
-import { Project, Task, projectList } from "./main-logic";
+import { Project, projectList } from "./main-logic";
 
 function init() {
   let projects;

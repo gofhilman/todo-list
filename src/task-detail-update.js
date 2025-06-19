@@ -70,7 +70,8 @@ function updateTaskDetails(projectTarget, target) {
     Object.assign(dueDateInput, {
         type: "date",
         name: "due-date",
-        id: "due-date"
+        id: "due-date",
+        value: target.dueDate
     });
     Object.assign(noteText, {
         name: "note-text",
