@@ -53,10 +53,14 @@ body {
 }
 
 .left-sidebar {  
-    padding: 15px 20px; 
+    padding: 15px 5px; 
     flex: 2;    
     background-color: var(--bg-light-color);
     gap: 20px;
+}
+
+.page-title {
+    margin-left: 15px;
 }
 
 .page-title > .logo {
@@ -71,11 +75,17 @@ body {
 #main-list, #project-list {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 2px;
 }
 
-#main-list > div {
+#main-list > div, #project-list > p {
     gap: 0;
+    cursor: pointer;
+    padding: 4px 15px;
+}
+
+#main-list > div:hover, #project-list > p:hover {
+    background-color: black;
 }
 
 #main-list > div > p {
