@@ -128,7 +128,7 @@ input[type="text"], .creation-section > input {
     width: 35px;
 }
 
-.creation-section.no-display {
+.no-display {
     display: none;
 }
 
@@ -176,4 +176,8 @@ textarea {
 #task-buttons {
     display: flex;
     justify-content: space-between;
+}
+
+.hidden {
+    visibility: hidden;
 }
