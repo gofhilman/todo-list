@@ -257,6 +257,7 @@ label[for="due-date"] > div {
 }
 
 #due-date, textarea {
+  color: black;
   resize: none;
   border-radius: 8px;
   padding: 7px 10px;
